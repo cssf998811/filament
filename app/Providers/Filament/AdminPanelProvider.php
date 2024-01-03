@@ -9,6 +9,7 @@ use App\Models\Team;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Navigation\MenuItem;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -33,6 +34,10 @@ class AdminPanelProvider extends PanelProvider
             ->tenant(Team::class)
             ->tenantRegistration(RegisterTeam::class)
             ->tenantProfile(EditTeamProfile::class)
+            ->tenantMenuItems([
+                'profile' => MenuItem::make()->label('編輯團隊資料'),
+                'register' => MenuItem::make()->label('新增團隊資料'),
+            ])
             ->login()
             ->colors([
                 'primary' => Color::Amber,
