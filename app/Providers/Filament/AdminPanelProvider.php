@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\AvatarProviders\BoringAvatarsProvider;
 use App\Filament\Pages\Tenancy\EditTeamProfile;
 use App\Filament\Pages\Tenancy\RegisterTeam;
 use App\Http\Middleware\ApplyTenantScopes;
@@ -38,6 +39,7 @@ class AdminPanelProvider extends PanelProvider
                 'profile' => MenuItem::make()->label('編輯團隊資料'),
                 'register' => MenuItem::make()->label('新增團隊資料'),
             ])
+            ->defaultAvatarProvider(BoringAvatarsProvider::class)
             ->login()
             ->colors([
                 'primary' => Color::Amber,
