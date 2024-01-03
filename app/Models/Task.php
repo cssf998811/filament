@@ -10,8 +10,17 @@ class Task extends Model
 {
     use HasFactory;
 
-    public function teams(): BelongsTo
+    protected $fillable = [
+        'description',
+    ];
+
+    public function team(): BelongsTo
     {
         return $this->belongsTo(Team::class);
+    }
+
+    public function label():BelongsTo
+    {
+        return $this->belongsTo(Label::class);
     }
 }
