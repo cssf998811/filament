@@ -67,12 +67,16 @@ class User extends Authenticatable implements FilamentUser, HasTenants
 
     public function canAccessPanel(Panel $panel): bool
     {
-        // admin panel僅限旭聯內部登入
+        // admin panel僅限旭聯內部且admin登入
         if ($panel->getId() === 'admin') {
-            return str_ends_with($this->email, '@sun.net.tw');
+            return $this->is_admin && str_ends_with($this->email, '@sun.net.tw');
             // return str_ends_with($this->email, '@yourdomain.com') && $this->hasVerifiedEmail();
+        } elseif ($panel->getId() === 'tenantAdmin') {
+            // 判斷帳號是admin才可登入
+            return $this->is_admin;
         }
 
+        // tenant panel有帳號就可以登入
         return true;
     }
 }
