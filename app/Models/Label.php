@@ -12,7 +12,7 @@ class Label extends Model
     use HasFactory;
 
     protected $fillable = [
-      'name',
+        'name',
     ];
 
     public function team(): BelongsTo
@@ -20,7 +20,7 @@ class Label extends Model
         return $this->belongsTo(Team::class);
     }
 
-    public function tasks():HasMany
+    public function tasks(): HasMany
     {
         return $this->hasMany(Task::class);
     }

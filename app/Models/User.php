@@ -67,8 +67,12 @@ class User extends Authenticatable implements FilamentUser, HasTenants
 
     public function canAccessPanel(Panel $panel): bool
     {
-        // FIXME:沒認證就可以訪問Admin panel
-        // return str_ends_with($this->email, '@yourdomain.com') && $this->hasVerifiedEmail();
+        // admin panel僅限旭聯內部登入
+        if ($panel->getId() === 'admin') {
+            return str_ends_with($this->email, '@sun.net.tw');
+            // return str_ends_with($this->email, '@yourdomain.com') && $this->hasVerifiedEmail();
+        }
+
         return true;
     }
 }

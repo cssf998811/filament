@@ -1,6 +1,7 @@
 <?php
 namespace App\Filament\Pages\Tenancy;
 
+use App\Models\Team;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Form;
@@ -16,10 +17,11 @@ class EditTeamProfile extends EditTenantProfile
     
     public function form(Form $form): Form
     {
+        // $isAdmin = auth()->user()->is_admin;
+
         return $form
             ->schema([
-                TextInput::make('name')
-                    ->label('團隊名稱'),
+                TextInput::make('name')->label('團隊名稱'),
                 Checkbox::make('is_admin')
                     ->label('設為管理員'),
             ]);
