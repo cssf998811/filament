@@ -28,6 +28,7 @@ class LabelResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
+                    ->label('標籤名稱')
                     ->required(),
             ]);
     }

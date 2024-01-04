@@ -18,19 +18,21 @@ class TaskResource extends Resource
 {
     protected static ?string $model = Task::class;
 
-    protected static ?string $navigationLabel = '議題管理';
+    protected static ?string $navigationLabel = '問題管理';
 
     protected static ?string $navigationIcon = 'heroicon-o-briefcase';
 
-    protected static ?string $modelLabel = '議題';
+    protected static ?string $modelLabel = '問題';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('description')
+                    ->label("問題描述")
                     ->required(),
                 Forms\Components\Select::make('label_id')
+                    ->label("標籤")
                     ->relationship('label', 'name')
                     ->required(),
             ]);
