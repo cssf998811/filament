@@ -30,13 +30,6 @@ class TaskResource extends Resource
                     ->required(),
                 Forms\Components\Select::make('label_id')
                     ->relationship('label', 'name')
-//                    TODO:@see \app\Http\Middleware\ApplyTenantScopes.php
-//                    ->relationship(
-//                        'label',
-//                        'name',
-//                        modifyQueryUsing:
-//                            fn(Builder $query) => $query->whereBelongsTo(Filament::getTenant())
-//                    )
                     ->required(),
             ]);
     }

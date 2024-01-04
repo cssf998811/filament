@@ -5,20 +5,21 @@ use App\Models\Team;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Pages\Tenancy\RegisterTenant;
+use Carbon\Carbon;
 
 class RegisterTeam extends RegisterTenant
 {
     public static function getLabel(): string
     {
-        return 'Register team';
+        return '註冊新團隊';
     }
 
     public function form(Form $form): Form
     {
         return $form
             ->schema([
-                TextInput::make('name'),
-// ...
+                TextInput::make('name')
+                    ->label('團隊名稱'),
             ]);
     }
 
@@ -26,7 +27,7 @@ class RegisterTeam extends RegisterTenant
     {
         $team = Team::create($data);
 
-        $team->members()->attach(auth()->user());
+        $team->members()->attach(auth()->user(), ['created_at' => now(), 'updated_at' => now()]);
 
         return $team;
     }

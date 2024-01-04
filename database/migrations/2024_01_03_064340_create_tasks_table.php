@@ -14,8 +14,7 @@ return new class extends Migration
         Schema::create('tasks', function (Blueprint $table) {
             $table->id();
             $table->integer('team_id');
-            $table->integer('label_id')
-                ->nullable();
+            $table->integer('label_id');
             $table->text('description');
             $table->timestamps();
         });

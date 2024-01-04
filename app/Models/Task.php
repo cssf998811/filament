@@ -12,6 +12,7 @@ class Task extends Model
 
     protected $fillable = [
         'description',
+        'label_id',
     ];
 
     public function team(): BelongsTo
