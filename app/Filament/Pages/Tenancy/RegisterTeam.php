@@ -3,6 +3,7 @@ namespace App\Filament\Pages\Tenancy;
 
 use App\Models\Team;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Checkbox;
 use Filament\Forms\Form;
 use Filament\Pages\Tenancy\RegisterTenant;
 use Carbon\Carbon;
@@ -20,6 +21,8 @@ class RegisterTeam extends RegisterTenant
             ->schema([
                 TextInput::make('name')
                     ->label('團隊名稱'),
+                Checkbox::make('is_admin')
+                    ->label('設為管理員'),
             ]);
     }
 

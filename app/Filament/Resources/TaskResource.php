@@ -18,9 +18,11 @@ class TaskResource extends Resource
 {
     protected static ?string $model = Task::class;
 
-    protected static ?string $navigationLabel = '任務管理';
+    protected static ?string $navigationLabel = '議題管理';
 
     protected static ?string $navigationIcon = 'heroicon-o-briefcase';
+
+    protected static ?string $modelLabel = '議題';
 
     public static function form(Form $form): Form
     {

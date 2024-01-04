@@ -13,6 +13,7 @@ class Team extends Model
 
     protected $fillable = [
         'name',
+        'is_admin',
     ];
 
     public function labels():HasMany
