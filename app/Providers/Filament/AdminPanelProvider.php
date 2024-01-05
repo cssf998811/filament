@@ -37,10 +37,17 @@ class AdminPanelProvider extends PanelProvider
             ->tenantProfile(EditTeamProfile::class)
             ->tenantMenuItems([
                 'profile' => MenuItem::make()->label('編輯團隊資料'),
-                'register' => MenuItem::make()->label('新增團隊資料'),
+                'register' => MenuItem::make()->label('新增團隊資料')
+                    ->visible(fn (): bool => auth()->user()->canManageTenants()),
             ])
             ->defaultAvatarProvider(BoringAvatarsProvider::class)
             ->login()
+            // 使用者可自行註冊帳號使用
+            // ->registration()
+            // ->passwordReset()
+            // ->emailVerification()
+            // 右上角的profile(改名、信箱、密碼等等)
+            ->profile()
             ->colors([
                 'primary' => Color::Amber,
             ])
@@ -68,7 +75,17 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ])
+            ->authGuard('web')
+            // ->spa()
+            // ->darkMode(false)
+            // ->brandName('Bossview')
+            // ->brandLogo(asset('images/logo.svg'))
+            // ->brandLogo(fn () => view('logo'))
+            // ->favicon(asset('images/favicon.png'))
+            // 預設是側邊選單
+            // ->topNavigation()
             ->tenantMiddleware([
+                // 租戶隔離 避免跨team存取label跟task
                 ApplyTenantScopes::class,
             ], isPersistent: true);
     }

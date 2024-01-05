@@ -80,4 +80,17 @@ class TaskResource extends Resource
             'edit' => Pages\EditTask::route('/{record}/edit'),
         ];
     }
+
+    // 防止選單註冊
+    // public static function shouldRegisterNavigation(): bool
+    // {
+    //     return auth()->user()->canManageTasks();
+    // }
+
+    // FIXME:防止輸入網址訪問無效???
+    // @see https://filamentphp.com/docs/3.x/panels/pages#conditionally-hiding-pages-in-navigation
+    // public function mount(): void
+    // {
+    //     abort_unless(auth()->user()->canManageTasks(), 403);
+    // }
 }
