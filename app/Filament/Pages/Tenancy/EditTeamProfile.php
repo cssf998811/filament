@@ -14,7 +14,7 @@ class EditTeamProfile extends EditTenantProfile
     {
         return '團隊資料';
     }
-    
+
     public function form(Form $form): Form
     {
         // $isAdmin = auth()->user()->is_admin;
