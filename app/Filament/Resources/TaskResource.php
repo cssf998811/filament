@@ -18,19 +18,21 @@ class TaskResource extends Resource
 {
     protected static ?string $model = Task::class;
 
-    protected static ?string $navigationLabel = '議題管理';
+    protected static ?string $navigationLabel = '問題管理';
 
     protected static ?string $navigationIcon = 'heroicon-o-briefcase';
 
-    protected static ?string $modelLabel = '議題';
+    protected static ?string $modelLabel = '問題';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\TextInput::make('description')
+                    ->label("問題描述")
                     ->required(),
                 Forms\Components\Select::make('label_id')
+                    ->label("標籤")
                     ->relationship('label', 'name')
                     ->required(),
             ]);
@@ -78,4 +80,17 @@ class TaskResource extends Resource
             'edit' => Pages\EditTask::route('/{record}/edit'),
         ];
     }
+
+    // 防止選單註冊
+    // public static function shouldRegisterNavigation(): bool
+    // {
+    //     return auth()->user()->canManageTasks();
+    // }
+
+    // FIXME:防止輸入網址訪問無效???
+    // @see https://filamentphp.com/docs/3.x/panels/pages#conditionally-hiding-pages-in-navigation
+    // public function mount(): void
+    // {
+    //     abort_unless(auth()->user()->canManageTasks(), 403);
+    // }
 }

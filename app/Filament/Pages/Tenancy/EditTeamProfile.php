@@ -14,16 +14,18 @@ class EditTeamProfile extends EditTenantProfile
     {
         return '團隊資料';
     }
-    
+
     public function form(Form $form): Form
     {
         // $isAdmin = auth()->user()->is_admin;
+        // dd($isAdmin);
 
         return $form
             ->schema([
                 TextInput::make('name')->label('團隊名稱'),
                 Checkbox::make('is_admin')
-                    ->label('設為管理員'),
+                    ->label('設為管理員')
+                    ->visible(fn (): bool => auth()->user()->canManageTenants()),
             ]);
     }
 }
